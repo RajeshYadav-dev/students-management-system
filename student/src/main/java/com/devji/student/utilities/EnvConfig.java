@@ -1,16 +1,15 @@
 package com.devji.student.utilities;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import io.github.cdimascio.dotenv.Dotenv;
 
-@Configuration
 public class EnvConfig {
-  @Bean
   public Dotenv getEnv() {
-    
-    return null;
-    // return dotenv;
+    Dotenv dotenv = Dotenv.configure()
+        .directory("F:\\java\\.env")
+        .load();
+    System.setProperty("DB_URL", dotenv.get("DB_URL"));
+    System.setProperty("DB_USER", dotenv.get("DB_USER"));
+    System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
+    return dotenv;
   }
 }
